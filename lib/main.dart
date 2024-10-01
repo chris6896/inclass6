@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'dart:ui';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,12 +49,32 @@ void setupWindow() {
 /// _not_ depend on Provider.
 class Counter with ChangeNotifier {
   int value = 0;
+  String _message = "You're a child!";
+  Color _backgroundColor = Colors.lightBlue; 
   void increment() {
     value += 1;
     notifyListeners();
   }
 }
+void _updateMilestone(){
+  if (value <= 12) {
+    _message = "You're a child!";
+    _backgroundColor = Colors.lightBlue;
+  } else if (value <= 19) {
+    _message = "Teenager Time!";
+    _backgroundColor = Colors.lightGreen;
+  } else if (value <= 30) {
+    _message = "You're a young adult!";
+    _backgroundColor = Colors.lightYellow;
+  } else if (value <= 50) {
+    _message = "You're an adult now!";
+    _backgroundColor = Colors.orange; 
+  } else {
+    _message = "Golden years!";
+    _backgroundColor = Colors.lightGray;
+  }
 
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
